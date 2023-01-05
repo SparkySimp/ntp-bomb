@@ -12,7 +12,7 @@ namespace ntp_bomb
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
+        private override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
             {
@@ -133,7 +133,7 @@ namespace ntp_bomb
             0,
             0,
             0});
-            this.nuCoordY.ValueChanged += new System.EventHandler(this.nuCoordY_ValueChanged);
+
             // 
             // nuCoordX
             // 
@@ -165,7 +165,7 @@ namespace ntp_bomb
             this.btnManualBomb.TabIndex = 1;
             this.btnManualBomb.Text = "Bombala";
             this.btnManualBomb.UseVisualStyleBackColor = true;
-            this.btnManualBomb.Click += new System.EventHandler(this.btnManualBomb_Click);
+            //this.btnManualBomb.Click += new System.EventHandler(this.btnManualBomb_Click);
             // 
             // tpAuto
             // 

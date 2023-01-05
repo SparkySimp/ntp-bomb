@@ -25,7 +25,7 @@ namespace ntp_bomb
 
         PictureBox[,] pictureBoxes1 = new PictureBox[4, 4];
         Random prng = new Random();
-        private void MainForm_Load(object sender, EventArgs e)
+        protected void MainForm_Load(object sender, EventArgs e)
         {
             var pictureBoxes = (from Control ctl in this.Controls where ctl is PictureBox _ select ctl).ToList();
 
@@ -62,7 +62,12 @@ namespace ntp_bomb
             }
         }
 
-        private void btnAutoBomb_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Handles Automated bomb drop process.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnAutoBomb_Click(object sender, EventArgs e)
         {
             int falseCount = 0;
             for (int i = 0; i < 4; i++)
@@ -98,20 +103,21 @@ namespace ntp_bomb
             RenderBombArray();
         }
 
-        private void btnManualBomb_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Handles manual bomb planting process.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnManualBomb_Click(object sender, EventArgs e)
         {
             (int x, int y) = (Decimal.ToInt32(nuCoordX.Value) - 1, Decimal.ToInt32(nuCoordY.Value) - 1);
             hasBomb[x, y] = true;
             RenderBombArray();
         }
 
-        [Obsolete("This function was a mistake", true)]
-        private void nuCoordY_ValueChanged(object sender, EventArgs e)
-        {
 
-        }
 
-        private void tbAutoBom_SelectedIndexChanged(object sender, EventArgs e)
+        protected void tbAutoBom_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tbAutoBom.SelectedIndex == 2)
             {
