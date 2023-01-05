@@ -8,9 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace ntp_bomb
 {
+    /// <summary>
+    /// Represents information about a bomb.
+    /// </summary>
+    struct BombInfo
+    {
+        public bool IsBomb { get; set; }
+        public (int, int) Location { get; set; }
+    }
     public partial class MainForm : Form
     {
         public MainForm()
@@ -55,9 +64,15 @@ namespace ntp_bomb
                 for (int j = 0; j < 4; j++)
                 {
                     if (hasBomb[i, j])
-                        pictureBoxes1[i,j].BackColor = Color.DarkOrchid;
+                    {
+                        pictureBoxes1[i, j].BackColor = Color.Crimson;
+                        pictureBoxes1[i, j].Tag = true;
+                    }
                     else
-                        pictureBoxes1[i,j].BackColor = Color.Crimson;
+                    {
+                        pictureBoxes1[i, j].BackColor = Color.Crimson;
+                        pictureBoxes1[i, j].Tag = false;
+                    }
                 }
             }
         }
@@ -124,6 +139,26 @@ namespace ntp_bomb
                 hasBomb = new bool[4, 4];
                 RenderBombArray();
                 tbAutoBom.SelectedIndex = 0;
+            }
+        }
+
+        private void Bomb_Click(object sender, EventArgs e)
+        {
+            if((bool)((Control)sender).Tag)
+            {
+                ((Control)sender).BackColor = Color.MintCream;
+
+                MessageBox.Show("Bomba Patlar", caption: "Yapma bea!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+        }
+
+        private void pictureBox16_MouseClick(object sender, MouseEventArgs e)
+        {
+            if ((bool)((Control)sender).Tag)
+            {
+                ((Control)sender).BackColor = Color.MintCream;
+
+                MessageBox.Show("Bomba Patlar", caption: "Yapma bea!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
     }
